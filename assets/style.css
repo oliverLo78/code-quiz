@@ -1,0 +1,68 @@
+header {
+    display: flex;
+    justify-content: space-between;
+    padding: 12px;
+}
+
+main {
+    display: block;
+}
+
+/* .mainContainer {
+    width: 500px;
+    max-width: 50%;
+    border-radius: 3px;
+    background-color: white;
+    padding: 12px;
+} */
+
+.introText {
+    font-family: sans-serif;
+    font-weight: bold;
+    width: 600px;
+    margin: auto;
+    padding: 12px;
+}
+
+:root {
+    --purple: rgb(129, 19, 129)
+}
+
+.hide {
+    display: none;
+}
+
+.points {
+    text-decoration: none;
+    color: var(--purple);
+    font-weight: bold;
+    font-family: sans-serif;
+}
+
+#startScreen {
+    text-align: center;
+    padding: 24px;
+}
+
+h1 {
+    font-size: 200%;
+    font-weight: bold;
+    font-family: sans-serif;
+    padding: 12px;
+    text-align: center;
+}
+
+.p {
+    font-family: sans-serif;
+    font-weight: bold;
+    width: 600px;
+}
+
+#startButton {
+    background-color: var(--purple);
+    color: white;
+    border-radius: 6px;
+    padding: 3px;
+    cursor: pointer;
+}
+
