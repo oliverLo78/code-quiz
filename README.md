@@ -3,8 +3,6 @@
 
 ## Description
 
-Provide a short description explaining the what, why, and how of your project. Use the following questions as a guide:
-
 - The motivation for this project was to create an codign assessment with multiple choice questions to using javaScript to make the web application 
 - The reason this project was created is to practice the fundamental logic of javaScript 
 - It creates a timed quiz which stores the correct and incorrect answers in local storage
@@ -19,7 +17,7 @@ Provide a short description explaining the what, why, and how of your project. U
 
 ## Installation
 
-follow the link to live website here ...
+follow the link to live website here ...https://oliverlo78.github.io/code-quiz/
 
 ## Usage
 
@@ -44,6 +42,6 @@ WHEN the game is over
 THEN I can save my initials and my score
 
     
-    ![code-quiz application](./assets/images/04-web-apis-homework-demo.gif)
+    ![code-quiz application](/assets/images/04-web-apis-homework-demo.gif)
     
 
