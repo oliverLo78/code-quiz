@@ -35,6 +35,7 @@ let questionText;
 let pointsTotal = 99;
 let quizQuestions;
 let currentQuestion = 0;
+let answerText;
 
 // GIVEN I am taking a code quiz
 // WHEN I click the start button

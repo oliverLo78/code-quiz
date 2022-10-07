@@ -17,7 +17,7 @@
 
 ## Installation
 
-follow the link to live website here ...https://oliverlo78.github.io/code-quiz/
+follow the link to live website here [link to code quiz](https://oliverlo78.github.io/code-quiz/
 
 ## Usage
 
@@ -42,6 +42,6 @@ WHEN the game is over
 THEN I can save my initials and my score
 
     
-    ![code-quiz application](/assets/images/04-web-apis-homework-demo.gif)
+    ![code-quiz application WHY is image not showing???](./assets/images/04-web-apis-homework-demo.gif)
     
 

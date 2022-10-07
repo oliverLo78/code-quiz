@@ -5,19 +5,24 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width", initial-scale=1.0">
     <title>Highscores</title>
-
-    <link rel="stylesheet" href="./code-quiz/assets/style.css">
+    <link rel="stylesheet" href="./assets/css/resets.css">
+    <link rel="stylesheet" href="assets/css/style.css">
 </head>
 
     <body>
+        <main style="padding-top: 145px">
         <div class="wrap">
             <h1>Highscores</h1>
+
+            <!-- unordered list is being targeted by javaScript to add local storage values -->
             <ol id="highscores"></ol>
-    
-            <a href="index.html"><button>Go Back</button></a>
-            <button id="removeScores">Clear Highscores</button>
+            
+            <nav class="pointsNav">
+            <a href="index.html" style="text-decoration: none;"><button class="buttonLook">Go Back</button></a>
+            <button id="removeScores" class="buttonLook">Clear Highscores</button>
         </div>
     
         <script src="./assets/js/points.js"></script>
+        </main>
     </body>
 </html>
