@@ -95,8 +95,6 @@ h2 {
 }
 /* class selectors */
 
-
-
 .introText {
     padding: 12px;
     text-align: center;
@@ -113,12 +111,12 @@ h2 {
 }
 
 /* highscores link style */
-.pointsLink {
+.points-link {
     text-decoration: none;
     position: relative;
 }
 
-.pointsLink::after {
+.points-link::after {
     content: "";
     position: absolute;
     bottom: 0;

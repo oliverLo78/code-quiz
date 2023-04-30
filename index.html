@@ -12,20 +12,19 @@
 </head>
 
 <body>
+    <!-- navigation menu -->
     <header>
         <!-- link to highscores page -->
-        <a class="pointsLink" href="./highscores.html">view high scores</a>
-        <span class="timer">
-            <span class="timeLabel">Time</span>
-            <span class="minuteTimer">60</span>
-        </span>
+        <a class="points-link header-info" href="./highscores.html">view high scores</a>
+        <h3 class="header-info">Time:<span class="timer">00</span></h3>
     </header>
 
     <main>
         
         <div class="wrapper">
-
-    <div class="startScreen" id="options">
+            
+        <!-- Begin the quiz    -->
+        <div id="startScreen" class="options">
         <h1>Coding Quiz Challenge</h1>
 
         <!-- p tag with a little intro about the quiz -->
@@ -35,11 +34,11 @@
             score/time by 15 seconds!
         </p>
         <!-- start button -->
-        <button id="startButton" class="buttonLook">Start Quiz</button>
+        <button id="startButton" onclick="displayQuestion()"  class="buttonLook">Start Quiz</button>
     </div>
 
     <!-- quiz questions part -->
-    <div id="questionContainer" class="hide">
+    <div id="questions" class="hide">
         <h2 id="questionText" class="hide"> Filler questions text?</h2>
         <div id="choices" class="choices"></div>
         <button id="choice-1" class="buttonLook buttonAnswer">filler 1</button>
@@ -64,7 +63,7 @@
       </div>
     </main>
 
-        <script src="./assets/js/script.js"></script>
+        <script src="./assets/js/script.js" defer></script>
         <script src="./assets/js/points.js"></script>
     </body>
 

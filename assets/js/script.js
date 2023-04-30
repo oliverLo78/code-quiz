@@ -1,60 +1,52 @@
 var questions = [
   {
-      questionText: "What type of API components are used to interact with user's web browser?",
-      answerText: ['methods', 'properties', 'events', 'URLs', 'All of the above'],
-      correctText: 'All of the above' 
+    questionText: "What type of API components are used to interact with user's web browser?",
+    choices: [
+      {text: 'methods', correct: false}, 
+      {text: 'properties', correct: false},
+      {text: 'events', correct: false},
+      {text: 'URLs', correct: false},
+      {text: 'All of the above', correct: true}
+    ]
   },
-
   {
-      questionText: "What does the DOM create objects of that we can model from the real world?",
-      answerText: ['server', 'car', 'frame', 'tree'],
-      correctText: 'tree'
+    questionText: "What does the DOM create objects of that we can model from the real world?",
+    choices: [
+      {text: 'server', correct: false},
+      {text: 'car', correct: false},
+      {text: 'frame', correct: false},
+      {text: 'tree', correct: true}
+    ]
   },
-
   {
-      questionText: "Select one of the key principles in computational thinking?",
-      answerText: ['strings', 'booleans', 'algorithms', 'numbers' ],
-      correctText: 'algorithms'
-
+    questionText: "Select one of the key principles in computational thinking?",
+    choices: [
+      {text: 'strings', correct: false},
+      {text: 'booleans', correct: false},
+      {text: 'algorithms', correct: true},
+      {text: 'numbers', correct: false}
+    ]
   },
-
   {
-      questionText: "Google Chrome DevTools allows you inspect, DOM elements, log messages to console, and  "
-      answerText: ['run the command line', 'view and edit local storage', 'reboot your desktop', 'update social media status'],
-      correctText: 'view and edit local storage'
-
-  },
-  
-    localStorage.setItem("questions", JSON.stringify(questions));
+    questionText: "Google Chrome DevTools allows you inspect, DOM elements, log messages to console, and  ",
+    choices: [
+      {text: 'run the command line', correct: false},
+      {text: 'view and edit local storage', correct: true},
+      {text: 'reboot your desktop', correct: false},
+      {text: 'update social media status', correct: false}
+    ]
+  }
 ];
 
+localStorage.setItem("questions", JSON.stringify(questions))
 
 // variables to keep track of quiz state
-let correctText;
-let questionText;
-let pointsTotal = 99;
-let quizQuestions;
-let currentQuestion = 0;
-let answerText;
-
-// GIVEN I am taking a code quiz
-// WHEN I click the start button
-// THEN a timer starts and I am presented with a question
-// WHEN I answer a question
-// THEN I am presented with another question
-// WHEN I answer a question incorrectly
-// THEN time is subtracted from the clock
-// WHEN all questions are answered or the timer reaches 0
-// THEN the game is over
-// WHEN the game is over
-// THEN I can save my initials and my score
-// 
-
+let randomQuestions, currentQuestion;
 
     // looping through an array of currentQuestion
     // time
     // timerId
-// variables to keep track of quiz state
+
     // currentQuestion
     // time
     // timerId
@@ -63,61 +55,75 @@ let answerText;
 
 // variables to reference DOM elements
 var questionsEl = document.getElementById('questions');
-var startButton = document.getElementById('startButton');
+var startScreenEl = document.getElementById('startScreen');
+var lastScreenEl = document.getElementById('last-screen');
+var questionTextEl = document.getElementById('questionText');
+var answerChoiceEl = document.getElementById('choices');
+var startButtonEl = document.getElementById('startButton');
 var feedBackElement = document.getElementById('feedback');
-
-// var startQuiz = document.getElementById('answerButton');
-// var startScreen = document.getElementById("startScreen");
-// var answerText = document.querySelector("answerText");
-// var correctCount = document.querySelector("correctCount");
- var questionScreen = document.getElementById('questionContainer');
+var timerEl = document.getElementById('timer');
 
 
-/// FUNCTION TO START THE QUIZ
+var questionScreen = document.getElementById('questionContainer');
+
+
 function startQuiz() {
-  var startScreen = document.getElementById('start screen');
-  // hide start screen
-  // startScreen.setAttribute('class', 'hide');
-  document.getElementById('startButton').style.display = 'none';
+  // hide start screen and unhides questions screen
+  startScreenEl.classList.add('hide');
+  questionTextEl.classList.remove('hide');
 
-  // un-hide questions section
-  startScreen.removeAttribute('class', 'hide');
-  var questionContainer = document.getElementById('questions');
-  questionContainer.style.display = 'block';
+  // random quiz questions 
+  randomQuestions = questions.sort(() => Math.random() -.5)
+  currentQuestion = 0
   // start timer
-
-  // show starting time
-
-  getQuestion(currentQuestion);
-  clockTick();
+  clockTick()
+  getQuestion();
 }
-startButton.addEventListener('click', startQuiz);
+
+// define resetState function 
+function resetState() {
+  startScreenEl.classList.add('hide');
+  while (answerChoiceEl.firstChild) {
+    answerChoiceEl.removeChild(answerChoiceEl.firstChild);
+  }
+}
 
 /// FUNCTION TO GET/SHOW EACH QUESTION ///
-function getQuestion(currentQuestion) {
-  // get current question object from array
-  localStorage.setItem("questions", JSON.stringify(questions));
-  const timer = setInterval(myGreeting, 1000);
-  // update title with current question
-  document.getElementById('questionText').textContent = questions[currentQuestion].title;
-  // clear out any old question choices
-
-  // loop over choices
-  var currentQuestion;
-  for (let i = 0; i < questions[currentQuestion].choices.length; i++) {
-    console.log(questions[currentQuestion].answerText[i]);
-
-  }
-    // FOR {
-      // create new button for each choice
-      var button = document.createElement("button");
-      // display on the page
-      button.textContent = "alerts ";
-      
-    // } 
+function getQuestion() {
+  resetState()
+  displayQuestion(randomQuestions[currentQuestion])
 }
 
-startButton.addEventListener("click", startQuiz);
+function displayQuestion(questions) {
+  // get current question object from array
+  if (currentQuestion > 3) {
+    lastScreenEl.classList.add('stopTime')
+    questionsEl.classList.add('hide');
+    lastScreenEl.classList.remove('hide');
+    document.getElementById('finalScore').innerHTML = counter.innerHTML
+}
+   // update title with current question
+    questionTextEl.innerText = questions.questionText;
+    questions.choices.forEach(choices => {
+      const button = document.createElement('button')
+      button.innerText = choices.text
+      button.classList.add('buttonLook', 'buttonAnswer')
+      if (choices.correct === true) {
+        button.classList.add('correct')
+      }
+      var selectAnswer = document.createElement("P");
+      document.body.appendChild(selectAnswer);
+      button.addEventListener('click', selectAnswer)
+      // create new button for each choice
+      answerChoiceEl.appendChild(button)
+      })
+    }
+ 
+function refreshQuiz() {
+  while (answerChoiceEl.firstChild) {
+    answerChoiceEl.removeChild(answerChoiceEl.firstChild)
+  }
+}
 
 /// FUNCTION FOR CLICKING A QUESTION ///
 function questionClick(event) {
@@ -194,10 +200,7 @@ function saveHighscore() {
 
 /// CLICK EVENTS ///
   // user clicks button to submit initials
-
+  document.getElementById('submitButton').addEventListener('click', saveHighscore)
   // user clicks button to start quiz
-
-  // user clicks on element containing choices
-// Variables to reference DOM elements
-var questionEl = document.getElementById('questions');
-startButton.addEventListener('click', startQuiz);
+  document.getElementById('startButton').addEventListener('click', startQuiz)
+  
