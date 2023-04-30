@@ -1,5 +1,5 @@
 
-#<code-quiz>
+## code-quiz
 
 ## Description
 
