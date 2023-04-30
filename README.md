@@ -1,12 +1,12 @@
 
-# <code-quiz>
+#<code-quiz>
 
 ## Description
 
-- The motivation for this project was to create an coding assessment with multiple choice questions to using javaScript to make the web application 
+- The motivation for this project was to create an coding assessment with multiple choice questions using javaScript to make the web application 
 - The reason this project was created is to practice the fundamental logic of javaScript 
 - It creates a timed quiz which stores the correct and incorrect answers in local storage
-- learned about the DOM by having flexibility to edit and access elements of HTML using         javaScript 
+- learned about the DOM by having flexibility to edit and access elements of HTML using javaScript 
 
 ## Table of Contents (Optional)
 
@@ -21,17 +21,18 @@ follow the link to live website here [link to code quiz](https://oliverlo78.gith
 
 ## Usage
 
+## User Story
+    
 ```
-User Story
-
 AS A coding boot camp student
 I WANT to take a timed quiz on JavaScript fundamentals that stores high scores
 SO THAT I can gauge my progress compared to my peers
 ```
 
-```
-Acceptance Criteria
 
+## Acceptance Criteria
+    
+```
 GIVEN I am taking a code quiz
 WHEN I click the start button
 THEN a timer starts and I am presented with a question
