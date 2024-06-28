@@ -38,169 +38,129 @@ var questions = [
   }
 ];
 
-localStorage.setItem("questions", JSON.stringify(questions))
+localStorage.setItem("questions", JSON.stringify(questions));
 
-// variables to keep track of quiz state
-let randomQuestions, currentQuestion;
+// Variables to keep track of quiz state
+let randomQuestions, currentQuestion = 0;
+let score = 0;
+let time = 60;
+let timerId;
 
-    // looping through an array of currentQuestion
-    // time
-    // timerId
-
-    // currentQuestion
-    // time
-    // timerId
-
-
-
-// variables to reference DOM elements
+// Variables to reference DOM elements
 var questionsEl = document.getElementById('questions');
 var startScreenEl = document.getElementById('startScreen');
 var lastScreenEl = document.getElementById('last-screen');
-var questionTextEl = document.getElementById('questionText');
-var answerChoiceEl = document.getElementById('choices');
-var startButtonEl = document.getElementById('startButton');
+var questionTextEl = document.querySelector('#questionText');
+var answerChoiceEl = document.querySelector('#choices');
+var startButtonEl = document.querySelector('#startButton');
 var feedBackElement = document.getElementById('feedback');
-var timerEl = document.getElementById('timer');
+var timerEl = document.querySelector('.timer');
 
-
-var questionScreen = document.getElementById('questionContainer');
-
+// Retrieve questions from localStorage
+const storedQuestions = localStorage.getItem('questions');
+if (storedQuestions) {
+  randomQuestions = JSON.parse(storedQuestions);
+} else {
+  randomQuestions = [];
+}
 
 function startQuiz() {
-  // hide start screen and unhides questions screen
+  // Hide start screen and unhide questions screen
   startScreenEl.classList.add('hide');
-  questionTextEl.classList.remove('hide');
+  questionsEl.classList.remove('hide');
 
-  // random quiz questions 
-  randomQuestions = questions.sort(() => Math.random() -.5)
-  currentQuestion = 0
-  // start timer
-  clockTick()
+  // Shuffle quiz questions
+  randomQuestions = questions.sort(() => Math.random() - 0.5);
+  currentQuestion = 0;
+  score = 0;
+  time = 60;
+
+  // Start timer
+  startTimer();
   getQuestion();
 }
 
-// define resetState function 
 function resetState() {
-  startScreenEl.classList.add('hide');
   while (answerChoiceEl.firstChild) {
     answerChoiceEl.removeChild(answerChoiceEl.firstChild);
   }
 }
 
-/// FUNCTION TO GET/SHOW EACH QUESTION ///
 function getQuestion() {
-  resetState()
-  displayQuestion(randomQuestions[currentQuestion])
+  resetState();
+  displayQuestion(randomQuestions[currentQuestion]);
 }
 
-function displayQuestion(questions) {
-  // get current question object from array
-  if (currentQuestion > 3) {
-    lastScreenEl.classList.add('stopTime')
-    questionsEl.classList.add('hide');
-    lastScreenEl.classList.remove('hide');
-    document.getElementById('finalScore').innerHTML = counter.innerHTML
-}
-   // update title with current question
-    questionTextEl.innerText = questions.questionText;
-    questions.choices.forEach(choices => {
-      const button = document.createElement('button')
-      button.innerText = choices.text
-      button.classList.add('buttonLook', 'buttonAnswer')
-      if (choices.correct === true) {
-        button.classList.add('correct')
-      }
-      var selectAnswer = document.createElement("P");
-      document.body.appendChild(selectAnswer);
-      button.addEventListener('click', selectAnswer)
-      // create new button for each choice
-      answerChoiceEl.appendChild(button)
-      })
-    }
- 
-function refreshQuiz() {
-  while (answerChoiceEl.firstChild) {
-    answerChoiceEl.removeChild(answerChoiceEl.firstChild)
-  }
-}
+function displayQuestion(question) {
+  // Update title with current question
+  questionTextEl.innerText = question.questionText;
 
-/// FUNCTION FOR CLICKING A QUESTION ///
-function questionClick(event) {
-   currentQuestion.addEventListener("click", function(event) {
-    
-    console.log("question click");
-    console.log(this.value);
-  
-  // if the clicked element is not a choice button, do nothing.
-  if (this.value  !== question[currentQuestion].answerText) {
-    feedBackElement.textContent = "Incorrect..";
-  } else {
-    feedBackElement.textContent = "Correct...";
-  }
-
-  if (something) {
-  // check if user guessed wrong
-    // penalize time
-
-    // display new time on page
-
-    // give them feedback, letting them know it's wrong
-    displayMessage("incorrect!");
-  } else {
-    // give them feedback, letting them know it's right
-  } displayMessage("correct!");
-
-  // flash right/wrong feedback on page for a short period of time
-
-  // move to next question
-   
-  // check if we've run out of questions
-    // if so, end the quiz
-    // else, get the next question
+  // Create new buttons for each choice
+  question.choices.forEach(choice => {
+    const button = document.createElement('button');
+    button.innerText = choice.text;
+    button.classList.add('buttonLook', 'buttonAnswer');
+    button.addEventListener('click', selectAnswer);
+    button.dataset.correct = choice.correct;
+    answerChoiceEl.appendChild(button);
   });
 }
 
-/// FUNCTION TO END THE QUIZ ///
-function quizEnd() {
-  // stop timer
+function selectAnswer(e) {
+  const selectedButton = e.target;
+  const correct = selectedButton.dataset.correct === 'true';
 
-  // show end screen
+  if (correct) {
+    score++;
+    feedBackElement.textContent = "Correct!";
+  } else {
+    time -= 10;
+    feedBackElement.textContent = "Incorrect...";
+  }
 
-  // show final score
-
-  // hide questions section
+  currentQuestion++;
+  if (currentQuestion < randomQuestions.length) {
+    getQuestion();
+  } else {
+    quizEnd();
+  }
 }
 
-/// FUNCTION FOR UPDATING THE TIME ///
-function clockTick() {
-  // update time
-  // make a spot in the timer in my HTML 
-  var count = 60;
-  function countDown() {
-    var timer = document.getElementById("Time");
-      count--;  
-      timer.textContent = count;
-  }
-  // check if user ran out of time
+function startTimer() {
+  timerId = setInterval(() => {
+    if (time > 0) {
+      time--;
+      timerEl.textContent = time + 's';
+    } else {
+      clearInterval(timerId);
+      quizEnd();
+    }
+  }, 1000);
+}
+
+function quizEnd() {
+  clearInterval(timerId);
+  questionsEl.classList.add('hide');
+  lastScreenEl.classList.remove('hide');
+  document.getElementById('finalScore').textContent = score;
 }
 
 function saveHighscore() {
-  // get value of input box - for initials
+  var initials = document.getElementById('initials').value;
+  if (initials === "") return;
 
-  // make sure value wasn't empty
-    // get saved scores from localstorage, or if not any, set to empty array
+  const highscores = JSON.parse(localStorage.getItem('highscores')) || [];
+  const newScore = { score: score, initials: initials };
 
-    // format new score object for current user
+  highscores.push(newScore);
+  highscores.sort((a, b) => b.score - a.score);
+  highscores.splice(10);
 
-    // save to localstorage
-
-    // redirect to next page
+  localStorage.setItem('highscores', JSON.stringify(highscores));
+  window.location.href = 'highscores.html';
 }
 
-/// CLICK EVENTS ///
-  // user clicks button to submit initials
-  document.getElementById('submitButton').addEventListener('click', saveHighscore)
-  // user clicks button to start quiz
-  document.getElementById('startButton').addEventListener('click', startQuiz)
-  
+// Event listeners
+document.getElementById('startButton').addEventListener('click', startQuiz);
+document.getElementById('submitButton').addEventListener('click', saveHighscore);
+

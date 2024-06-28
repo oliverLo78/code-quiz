@@ -1,104 +1,39 @@
-// variables to keep track of quiz state
-    // currentQuestion
-    // time
-    // timerId
+// points.js
 
-// variables to reference DOM elements
-var questionsEl = document.getElementById('questions');
+function saveHighscore(initials, score) {
+  // Get existing scores from localStorage or initialize an empty array
+  const highscores = JSON.parse(localStorage.getItem('highscores')) || [];
 
+  // Create new score object
+  const newScore = {
+      initials: initials,
+      score: score
+  };
 
-/// FUNCTION TO START THE QUIZ
-function startQuiz() {
-  // hide start screen 
-  
-  // un-hide questions section
+  // Add new score to the list
+  highscores.push(newScore);
 
-  // start timer
+  // Sort scores in descending order and keep only the top 10
+  highscores.sort((a, b) => b.score - a.score);
+  highscores.splice(10);
 
-  // show starting time
-
-  getQuestion();
+  // Save updated scores back to localStorage
+  localStorage.setItem('highscores', JSON.stringify(highscores));
 }
 
-/// FUNCTION TO GET/SHOW EACH QUESTION ///
-function getQuestion() {
-  // get current question object from array
+// Add event listener to the submit button
+document.getElementById('submitButton').addEventListener('click', function() {
+  const initials = document.getElementById('initials').value;
+  const score = document.getElementById('finalScore').textContent;
 
-  // update title with current question
-
-  // clear out any old question choices
-
-  // loop over choices
-    // FOR {
-      // create new button for each choice
-  
-      // display on the page
-      
-    // } 
-}
-
-/// FUNCTION FOR CLICKING A QUESTION ///
-function questionClick(event) {
-
-  // if the clicked element is not a choice button, do nothing.
-  if (something) {
-
+  if (initials && score) {
+      saveHighscore(initials, score);
+      window.location.href = './highscores.html'; // Redirect to highscores page
   }
+});
 
-  if (something) {
-  // check if user guessed wrong
-    // penalize time
-
-    // display new time on page
-
-    // give them feedback, letting them know it's wrong
-  } else {
-    // give them feedback, letting them know it's right
-  }
-
-  // flash right/wrong feedback on page for a short period of time
-
-  // move to next question
-
-  // check if we've run out of questions
-    // if so, end the quiz
-    // else, get the next question
-}
-
-/// FUNCTION TO END THE QUIZ ///
-function quizEnd() {
-  // stop timer
-
-  // show end screen
-
-  // show final score
-
-  // hide questions section
-}
-
-/// FUNCTION FOR UPDATING THE TIME ///
-function clockTick() {
-  // update time
-
-  // check if user ran out of time
-}
-
-function saveHighscore() {
-  // get value of input box - for initials
-
-  // make sure value wasn't empty
-    // get saved scores from localstorage, or if not any, set to empty array
-
-    // format new score object for current user
-
-    // save to localstorage
-
-    // redirect to next page
-}
-
-/// CLICK EVENTS ///
-  // user clicks button to submit initials
-
-  // user clicks button to start quiz
-
-  // user clicks on element containing choices
+// Add event listener to the clear button
+document.getElementById('clearButton').addEventListener('click', function() {
+  localStorage.removeItem('highscores');
+  window.location.reload();
+});

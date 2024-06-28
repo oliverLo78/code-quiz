@@ -16,55 +16,45 @@
     <header>
         <!-- link to highscores page -->
         <a class="points-link header-info" href="./highscores.html">view high scores</a>
-        <h3 class="header-info">Time:<span class="timer">00</span></h3>
+        <h3 class="header-info">Time: <span class="timer">60</span></h3>
     </header>
 
     <main>
-        
         <div class="wrapper">
-            
-        <!-- Begin the quiz    -->
-        <div id="startScreen" class="options">
-        <h1>Coding Quiz Challenge</h1>
+            <!-- Begin the quiz -->
+            <div id="startScreen" class="options">
+                <h1>Coding Quiz Challenge</h1>
+                <!-- p tag with a little intro about the quiz -->
+                <p class="introText">
+                    Try to answer the following code-related questions within the time limit. Keep in mind that incorrect answers will penalize your score/time by 10 seconds!
+                </p>
+                <!-- start button -->
+                <button id="startButton" class="buttonLook">Start Quiz</button>
+            </div>
 
-        <!-- p tag with a little intro about the quiz -->
-        <p class="introText">
-            Try to answer the following code-related questions within the time
-            limit. Keep in mind that incorrect answers will penalize your 
-            score/time by 15 seconds!
-        </p>
-        <!-- start button -->
-        <button id="startButton" onclick="displayQuestion()"  class="buttonLook">Start Quiz</button>
-    </div>
+            <!-- quiz questions part -->
+            <div id="questions" class="hide choices">
+                <h2 id="questionText"></h2>
+                <div id="choices" class="choices"></div>
+            </div>
 
-    <!-- quiz questions part -->
-    <div id="questions" class="hide">
-        <h2 id="questionText" class="hide"> Filler questions text?</h2>
-        <div id="choices" class="choices"></div>
-        <button id="choice-1" class="buttonLook buttonAnswer">filler 1</button>
-        <button id="choice-2" class="buttonLook buttonAnswer">filler 2</button>
-        <button id="choice-3" class="buttonLook buttonAnswer">filler 3</button>
-        <button id="choice-4" class="buttonLook buttonAnswer">filler 4</button>
-    </div>
+            <!-- End of the code quiz -->
+            <div id="last-screen" class="hide">
+                <h2>All done!</h2>
+                <p class="introText">Your final score is <span id="finalScore">0</span></p>
+                <p class="introText">
+                    Enter initials: <input type="text" id="initials" maxlength="3" />
+                    <button id="submitButton" class="buttonLook">Submit</button>
+                </p>
+            </div>
 
-    <!-- End of the code quiz -->
-    <div id="last-screen" class="hide">
-        <h2>All done!</h2>
-        <p class="introText">Your final score is <span id="finalScore">00</span></p>
-        <p class="introText">
-            Enter initials: <input type="text" id="initials" max="3" />
-            <button id="submitButton" class="buttonLook">Submit</button>
-        </p>
-    </div>
-
-        <div id="feedback" class="feedback hide">
-            <p id="feedback">test</p>
+            <div id="feedback" class="feedback hide">
+                <p id="feedbackText">test</p>
+            </div>
         </div>
-      </div>
     </main>
 
-        <script src="./assets/js/script.js" defer></script>
-        <script src="./assets/js/points.js"></script>
-    </body>
-
+    <script src="./assets/js/script.js" defer></script>
+    <script src="./assets/js/points.js"></script>
+</body>
 </html>
