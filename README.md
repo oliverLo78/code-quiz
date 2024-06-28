@@ -45,6 +45,11 @@ THEN the game is over
 WHEN the game is over
 THEN I can save my initials and my score
 ```
-![A user clicks through an interactive coding quiz, then enters initials to save the high score before resetting and starting over.](./Assets/04-web-apis-homework-demo.gif)
+
+![A user clicks through an interactive coding quiz, then enters initials to save the high score before resetting and starting over.](./assets/04-web-apis-homework-demo.gif)
     
 
+## Demo
+```
+(./assets/images/04-web-apis-homework-demo.gif)
+```
