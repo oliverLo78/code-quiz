@@ -17,7 +17,7 @@
 
 ## Installation
 
-follow the link to live website here [link to code quiz](https://oliverlo78.github.io/code-quiz/
+follow the link to live website here [link to code quiz](https://oliverlo78.github.io/code-quiz/)
 
 ## Usage
 
@@ -45,11 +45,8 @@ THEN the game is over
 WHEN the game is over
 THEN I can save my initials and my score
 ```
+![A user clicks through an interactive coding quiz, then enters initials to save the high score before resetting and starting over.]
 
-![A user clicks through an interactive coding quiz, then enters initials to save the high score before resetting and starting over.](./assets/04-web-apis-homework-demo.gif)
-    
+![04-web-apis-homework-demo](https://github.com/oliverLo78/code-quiz/assets/109435666/ba8b31a1-add8-4afd-9efc-50cfcc8f83f7)
 
-## Demo
-```
-(./assets/images/04-web-apis-homework-demo.gif)
-```
+
