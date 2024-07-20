@@ -12,23 +12,21 @@
     <header>
         <a class="points-link header-info" href="./index.html">Back to Quiz</a>
     </header>
-        <div class="wrapper">
-            <div class="container">
-                <div class="card-contents">
-                    <h1>Highscores</h1>
-                    <form>Enter your initials: 
-                    <!-- unordered list is being targeted by javaScript to add local storage values -->
-                    <ol id="highscores"></ol>
-                    <input type="text" id="initials" placeholder="Your initials here">
-                    <button onclick="saveHighscore()" id="submitButton" class="buttonLook">Submit</button>
-                
+    <div class="wrapper">
+        <div class="container">
+            <div class="card-contents">
+                <h1>Highscores</h1>
+                <!-- unordered list is being targeted by JavaScript to add local storage values -->
+                <ol id="highscoreList"></ol>
+                <input type="text" id="initials" placeholder="Your initials here">
+                <button id="submitButton" class="buttonLook">Submit</button>
+            </div>
             <nav class="pointsNav">
-            <a href="index.html" style="text-decoration: none;"><button class="buttonLook">Go Back</button></a>
-            <button class="buttonLook" onclick="clearHighscores()">Clear Highscores</button>
+                <a href="index.html" style="text-decoration: none;"><button class="buttonLook">Go Back</button></a>
+                <button class="buttonLook" id="clearButton">Clear Highscores</button>
+            </nav>
         </div>
-      </div>
     </div>
-
-        <script src="./assets/js/points.js"></script>
-    </body>
+    <script src="./assets/js/points.js"></script>
+</body>
 </html>

@@ -78,7 +78,8 @@ h2 {
 }
 
 #startButton {
-    background-color:  var(--purple);
+    background-color:  purple;
+    color: white;
     border-radius: 6px;
     padding: 3px;
     cursor: pointer;
@@ -87,12 +88,16 @@ h2 {
 .buttonLook {
     display: flex;
     justify-content: left;
-    padding: 12px;
-    background-color: var(--purple);
     font-size: large;
     border-radius: 12px;
     transition: all 0.3s;
+    background-color:  purple;
+    color: white;
+    border-radius: 6px;
+    padding: 3px;
+    cursor: pointer;
 }
+
 /* class selectors */
 
 .introText {
@@ -146,10 +151,22 @@ h2 {
     filter: brightness(150%);
 }
 
-.buttonAsnwer {
-    margin: 12px;
-    padding: 5px 10px;
+#choices {
+    color: white;
+    background-color: purple;
+    border-radius: 6px;
+    padding: 3px;
+    cursor: pointer;
 }
+
+#feedback {
+    color: grey;
+    font-size: 1.2em;
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px solid grey;
+  }
+  
 
 .pointsNav {
     display: flex;

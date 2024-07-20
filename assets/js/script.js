@@ -99,7 +99,7 @@ function displayQuestion(question) {
   question.choices.forEach(choice => {
     const button = document.createElement('button');
     button.innerText = choice.text;
-    button.classList.add('buttonLook', 'buttonAnswer');
+    button.classList.add('clearButton', 'buttonAnswer');
     button.addEventListener('click', selectAnswer);
     button.dataset.correct = choice.correct;
     answerChoiceEl.appendChild(button);
@@ -115,7 +115,7 @@ function selectAnswer(e) {
     feedBackElement.textContent = "Correct!";
   } else {
     time -= 10;
-    feedBackElement.textContent = "Incorrect...";
+    feedBackElement.textContent = "Wrong!";
   }
 
   currentQuestion++;
